@@ -10,13 +10,34 @@
     <title>TripTrack | Homepage</title>
 
     {% compress css %}
-      <link rel="stylesheet" href="{% static 'src/output.css' %}">
+      <link id="tailwind-css" rel="stylesheet" href="{% static 'src/css/output.css' %}">
     {% endcompress %}
 
 </head>
 <body>
 {% block content %}{% endblock content %}
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
+
+
+<script>
+  var toggleButton = document.getElementById('toggleButton');
+  var dropdown = document.getElementById('dropdown');
+  var paths = [document.getElementById('path1'), document.getElementById('path2')];
+  var header = document.getElementById('nav-header');
+
+  var currentPath = 0;
+
+  toggleButton.addEventListener('click', function () {
+      paths[currentPath].style.display = 'none';
+      currentPath = 1 - currentPath;
+      paths[currentPath].style.display = 'flex';
+
+      header.classList.toggle('mb-12');
+      header.classList.toggle('mb-6');
+
+    dropdown.style.display = dropdown.style.display === 'none' || dropdown.style.display === '' ? 'flex' : 'none';
+  });
+</script>
+<script id="theme-toggle-js" src={% static "src/js/theme-toggle.js" %}></script>
 </body>
 </html>

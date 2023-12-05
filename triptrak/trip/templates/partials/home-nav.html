@@ -1,0 +1,67 @@
+<header id="nav-header" class="mb-12 md:mb-18 md:px-12 xl:mx-36 md:py-4">
+  <div class="flex items-center justify-between px-6 py-6">
+      <div class="logo font-semibold text-2xl">
+        <a href="{% url "home" %}">📌 TripTrak</a>
+      </div>
+      <div class="md:hidden">
+          <button id="toggleButton" class="text-gray-900 hover:text-blue-900 focus:text-grey-900 focus:outline-none block" type="button">
+              <svg class="h-6 w-6 fill-current" viewBox="0 0 24 24">
+                  <path id="path1" d="M 3 5 A 1.0001 1.0001 0 1 0 3 7 L 21 7 A 1.0001 1.0001 0 1 0 21 5 L 3 5 z M 3 11 A 1.0001 1.0001 0 1 0 3 13 L 21 13 A 1.0001 1.0001 0 1 0 21 11 L 3 11 z M 3 17 A 1.0001 1.0001 0 1 0 3 19 L 21 19 A 1.0001 1.0001 0 1 0 21 17 L 3 17 z"></path>
+                  <path class="hidden" id="path2" d="M 4.9902344 3.9902344 A 1.0001 1.0001 0 0 0 4.2929688 5.7070312 L 10.585938 12 L 4.2929688 18.292969 A 1.0001 1.0001 0 1 0 5.7070312 19.707031 L 12 13.414062 L 18.292969 19.707031 A 1.0001 1.0001 0 1 0 19.707031 18.292969 L 13.414062 12 L 19.707031 5.7070312 A 1.0001 1.0001 0 0 0 18.980469 3.9902344 A 1.0001 1.0001 0 0 0 18.292969 4.2929688 L 12 10.585938 L 5.7070312 4.2929688 A 1.0001 1.0001 0 0 0 4.9902344 3.9902344 z"></path>
+              </svg>
+          </button>
+      </div>
+      <div class="hidden md:flex px-2 pt-2 pb-4 gap-6 items-center">
+        {% if not user.is_authenticated %}
+          <a href="{% url 'login' %}" class="hover:text-blue-900 font-semibold">Login</a>
+        {% else %}
+          <a href="{% url 'logout' %}" class="hover:text-blue-900 font-semibold">Logout</a>
+        {% endif %}
+        <a 
+          {% if user.is_authenticated %} 
+              href="{% url 'trip-list' %}" 
+          {% else %} 
+              href="{% url 'signup' %}" 
+          {% endif %}>
+          <button class="bg-blue-900 hover:bg-blue-800 text-white font-semibold focus:outline-none w-26 border-0 px-3 py-2 text-lg rounded-md">
+            <div class="flex justify-center items-center">
+              {% if user.is_authenticated %}
+              Dashboard
+              {% else %}
+              Signup
+              {% endif %}
+              <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-1" viewBox="0 0 24 24">
+                  <path d="M5 12h14M12 5l7 7-7 7"></path>
+              </svg>
+            </div>
+          </button>
+        </a>
+      </div>
+  </div>
+  <div id="dropdown" class="hidden items-center justify-center px-2 pt-2 pb-4 gap-10">
+    {% if not user.is_authenticated %}
+      <a href="{% url 'login' %}" class="hover:text-blue-900 font-semibold">Login</a>
+    {% else %}
+      <a href="{% url 'logout' %}" class="hover:text-blue-900 font-semibold">Logout</a>
+    {% endif %}
+    <a 
+      {% if user.is_authenticated %} 
+          href="{% url 'trip-list' %}" 
+      {% else %} 
+          href="{% url 'signup' %}" 
+      {% endif %}>
+      <button class="bg-blue-900 hover:bg-blue-800 text-white font-semibold focus:outline-none w-26 border-0 px-3 py-2 text-lg rounded-md">
+        <div class="flex justify-center items-center">
+          {% if user.is_authenticated %}
+          Dashboard
+          {% else %}
+          Signup
+          {% endif %}
+          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-1" viewBox="0 0 24 24">
+              <path d="M5 12h14M12 5l7 7-7 7"></path>
+          </svg>
+        </div>
+      </button>
+    </a>
+  </div>
+</header>
